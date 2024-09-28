@@ -1,0 +1,27 @@
+@startuml
+
+class Doctor {
+    -String name
+    -int age
+    -String specialty
+    +void diagnose()
+    +void prescribeMedication()
+}
+
+class Physician {
+    -String clinicAddress
+    +void performCheckup()
+    +void referToSpecialist()
+}
+
+class Surgeon {
+    -String hospital
+    -String operatingRoom
+    +void performSurgery()
+    +void conductPostOpCare()
+}
+
+Doctor <|-- Physician
+Doctor <|-- Surgeon
+
+@enduml
