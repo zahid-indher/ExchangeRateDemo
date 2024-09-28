@@ -8,5 +8,5 @@ public class Constants
 	public final static String USER_TYPE_EMPLOYEE  = "employee";
 	public final static String USER_TYPE_AFFILIATE = "affiliate";
 	public final static int    CUSTOMER_TENURE     = 2;
-	public final static String GROCERRIES	        = "groceries";
+	public final static String GROCERRIES	        = "groceries"; 
 }
