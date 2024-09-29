@@ -1,7 +1,6 @@
 package com.exchange.demo.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 //BillRequest is class which maps json values to java fields
 public class BillRequest {
