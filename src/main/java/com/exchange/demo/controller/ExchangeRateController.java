@@ -12,21 +12,20 @@ import com.exchange.demo.service.ExchangeRateService;
 //Exchange Rate Controllre class provide the end point for this project. 
 @RestController
 @RequestMapping("/api")
-public class ExchangeRateController 
-{
+public class ExchangeRateController {
 
-    @Autowired
-    private ExchangeRateService exchangeRateService;
+	@Autowired
+	private ExchangeRateService exchangeRateService;
 
-    @Value("${currency.api.key}")
-    private String thirdPartyAPIKey;
+	@Value("${currency.api.key}")
+	private String thirdPartyAPIKey;
 
-    @GetMapping("/calculate")
-    public ResponseEntity<PayableAmount> computePayableTotal(@RequestBody BillRequest bill) 
-    {
-        double exchangeRate = exchangeRateService.fetchExchangeRate(bill.getOriginalCurrency().toUpperCase(), bill.getTargetCurrency().toUpperCase(), thirdPartyAPIKey);
-        PayableAmount payableAmount = exchangeRateService.calculatePayableAmount(bill, exchangeRate);
-        return new ResponseEntity<>(payableAmount,HttpStatus.OK);
-    }
-   
+	@GetMapping("/calculate")
+	public ResponseEntity<PayableAmount> computePayableTotal(@RequestBody BillRequest bill) {
+		double exchangeRate = exchangeRateService.fetchExchangeRate(bill.getOriginalCurrency().toUpperCase(),
+				bill.getTargetCurrency().toUpperCase(), thirdPartyAPIKey);
+		PayableAmount payableAmount = exchangeRateService.calculatePayableAmount(bill, exchangeRate);
+		return new ResponseEntity<>(payableAmount, HttpStatus.OK);
+	}
+
 }

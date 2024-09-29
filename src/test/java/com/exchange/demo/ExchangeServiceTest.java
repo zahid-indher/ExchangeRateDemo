@@ -19,9 +19,9 @@ public class ExchangeServiceTest {
 	@InjectMocks
 	private ExchangeRateService exchangeService;
 
-	double exchangeRate = Math.round(278.0861); // Retrieve the latest USD to PKR exchange rate from a third-party service, and update the variable for precise calculations.
- 
-	
+	double exchangeRate = Math.round(278.0861); // Retrieve the latest USD to PKR exchange rate from a third-party
+												// service, and update the variable for precise calculations.
+
 	@Test
 	public void testEmployeeWithNoGroceries() {
 		BillRequest bill = new BillRequest();
@@ -49,8 +49,7 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(36140.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
-	
+
 	@Test
 	public void testEmployeeWithGroceries() {
 		BillRequest bill = new BillRequest();
@@ -79,8 +78,6 @@ public class ExchangeServiceTest {
 
 	}
 
-	
-	
 	@Test
 	public void testEmployeeWithGroceriesAndNoGroceries() {
 		BillRequest bill = new BillRequest();
@@ -108,9 +105,7 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(44480), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
-	
-	
+
 	@Test
 	public void testAffiliateWithNoGroceries() {
 		BillRequest bill = new BillRequest();
@@ -134,11 +129,11 @@ public class ExchangeServiceTest {
 		System.out.println("~~ Calling        ::: testAffiliateWithNoGroceries");
 		PayableAmount payableAmount = exchangeService.calculatePayableAmount(bill, exchangeRate);
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		
+
 		assertEquals(Math.round(47260.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
+
 	@Test
 	public void testAffiliateWithGroceries() {
 		BillRequest bill = new BillRequest();
@@ -166,8 +161,7 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(52820.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
-	
+
 	@Test
 	public void testAffiliateWithGroceriesAndNoGroceries() {
 		BillRequest bill = new BillRequest();
@@ -195,7 +189,7 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(50040.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
+
 	@Test
 	public void testEmployeeeWithLongerTenureAndGroceries() {
 		BillRequest bill = new BillRequest();
@@ -223,7 +217,7 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(52820.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
+
 	@Test
 	public void testEmployeeeWithLongerTenureAndNoGroceries() {
 		BillRequest bill = new BillRequest();
@@ -251,8 +245,7 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(36140.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
-	
+
 	@Test
 	public void testEmployeeeWithLongerTenureAndGroceriesAndNoGroceries() {
 		BillRequest bill = new BillRequest();
@@ -280,9 +273,9 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(44480.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
+
 	@Test
-	public void  testAffiliateWithLongerTenureAndGroceries() {
+	public void testAffiliateWithLongerTenureAndGroceries() {
 		BillRequest bill = new BillRequest();
 		bill.setUserType(Constants.USER_TYPE_AFFILIATE);
 		bill.setCustomerTenure(3);
@@ -308,11 +301,9 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(52820.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
-	
-	
+
 	@Test
-	public void  testAffiliateWithLongerTenureAndNoGroceries() {
+	public void testAffiliateWithLongerTenureAndNoGroceries() {
 		BillRequest bill = new BillRequest();
 		bill.setUserType(Constants.USER_TYPE_AFFILIATE);
 		bill.setCustomerTenure(3);
@@ -338,12 +329,9 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(47260.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
-	
-	
-	
+
 	@Test
-	public void  testAffiliateWithLongerTenureAndGroceriesAndNoGroceries() {
+	public void testAffiliateWithLongerTenureAndGroceriesAndNoGroceries() {
 		BillRequest bill = new BillRequest();
 		bill.setUserType(Constants.USER_TYPE_AFFILIATE);
 		bill.setCustomerTenure(3);
@@ -369,12 +357,9 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(50040.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
-	
-	
-	
+
 	@Test
-	public void  testRegularLessThanTwoYearsWithGroceries() {
+	public void testRegularLessThanTwoYearsWithGroceries() {
 		BillRequest bill = new BillRequest();
 		bill.setUserType(Constants.USER_TYPE_REGULAR);
 		bill.setCustomerTenure(1);
@@ -400,9 +385,9 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(52820.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
+
 	@Test
-	public void  testRegularLessThanTwoYearsWithNoGroceries() {
+	public void testRegularLessThanTwoYearsWithNoGroceries() {
 		BillRequest bill = new BillRequest();
 		bill.setUserType(Constants.USER_TYPE_REGULAR);
 		bill.setCustomerTenure(1);
@@ -428,11 +413,9 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(52820.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
-	
-	
+
 	@Test
-	public void  testRegularLessThanTwoYearsWithGroceriesAndNoGroceries() {
+	public void testRegularLessThanTwoYearsWithGroceriesAndNoGroceries() {
 		BillRequest bill = new BillRequest();
 		bill.setUserType(Constants.USER_TYPE_REGULAR);
 		bill.setCustomerTenure(1);
@@ -458,17 +441,7 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(52820.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@Test
 	public void testRegularWithGroceries() {
 		BillRequest bill = new BillRequest();
@@ -477,11 +450,11 @@ public class ExchangeServiceTest {
 
 		Item item1 = new Item();
 		item1.setCategory(Constants.GROCERRIES);
-		item1.setPrice(200);		  // passing 200 groceries price
+		item1.setPrice(200); // passing 200 groceries price
 
 		Item item2 = new Item();
 		item2.setCategory("other");
-		item2.setPrice(0);			  // passing 0  other price
+		item2.setPrice(0); // passing 0 other price
 
 		bill.setItems(Arrays.asList(item1, item2));
 
@@ -494,7 +467,7 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(52820.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
+
 	@Test
 	public void testRegularWithNoGroceries() {
 		BillRequest bill = new BillRequest();
@@ -503,11 +476,11 @@ public class ExchangeServiceTest {
 
 		Item item1 = new Item();
 		item1.setCategory(Constants.GROCERRIES);
-		item1.setPrice(0);		  // passing 200 groceries price
+		item1.setPrice(0); // passing 200 groceries price
 
 		Item item2 = new Item();
 		item2.setCategory("other");
-		item2.setPrice(200);			  // passing 0  other price
+		item2.setPrice(200); // passing 0 other price
 
 		bill.setItems(Arrays.asList(item1, item2));
 
@@ -521,7 +494,6 @@ public class ExchangeServiceTest {
 
 	}
 
-	
 	@Test
 	public void testRegularWithGroceriesAndNoGroceries() {
 		BillRequest bill = new BillRequest();
@@ -530,11 +502,11 @@ public class ExchangeServiceTest {
 
 		Item item1 = new Item();
 		item1.setCategory(Constants.GROCERRIES);
-		item1.setPrice(100);		  // passing 200 groceries price
+		item1.setPrice(100); // passing 200 groceries price
 
 		Item item2 = new Item();
 		item2.setCategory("other");
-		item2.setPrice(100);			  // passing 0  other price
+		item2.setPrice(100); // passing 0 other price
 
 		bill.setItems(Arrays.asList(item1, item2));
 
@@ -547,15 +519,9 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(52820.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	@Test
-	public void  testRegularGreaterThanTwoYearsWithGroceries() {
+	public void testRegularGreaterThanTwoYearsWithGroceries() {
 		BillRequest bill = new BillRequest();
 		bill.setUserType(Constants.USER_TYPE_REGULAR);
 		bill.setCustomerTenure(4);
@@ -581,9 +547,9 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(52820.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
+
 	@Test
-	public void  testRegularGreaterThanTwoYearsWithNoGroceries() {
+	public void testRegularGreaterThanTwoYearsWithNoGroceries() {
 		BillRequest bill = new BillRequest();
 		bill.setUserType(Constants.USER_TYPE_REGULAR);
 		bill.setCustomerTenure(5);
@@ -609,11 +575,9 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(50040.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
-	
-	
+
 	@Test
-	public void  testRegularGreaterThanTwoYearsWithGroceriesAndNoGroceries() {
+	public void testRegularGreaterThanTwoYearsWithGroceriesAndNoGroceries() {
 		BillRequest bill = new BillRequest();
 		bill.setUserType(Constants.USER_TYPE_REGULAR);
 		bill.setCustomerTenure(5);
@@ -639,42 +603,6 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(51430.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
 
 	@Test
 	public void testEmployeeWithNonGroceriesWithLongerTenure() {
@@ -701,11 +629,5 @@ public class ExchangeServiceTest {
 		assertEquals(Math.round(36140.0), Math.round(payableAmount.getPaymentAmount()));
 
 	}
-
-	
-	
-	
-	
-	
 
 }
