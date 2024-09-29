@@ -10,5 +10,5 @@ public class Constants {
 	public final static int    CUSTOMER_TENURE 	   = 2;
 	public final static String GROCERRIES 	       = "groceries";
 	public final static String ORIGINAL_CURRENCY   = "USD";
-	public final static String TARGET_CURRENCY     = "PKR";
+	public final static String TARGET_CURRENCY     = "EUR";
 }

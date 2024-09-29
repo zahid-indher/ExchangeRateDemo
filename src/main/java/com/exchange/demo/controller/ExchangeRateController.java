@@ -25,7 +25,7 @@ public class ExchangeRateController
     public ResponseEntity<PayableAmount> computePayableTotal(@RequestBody BillRequest bill) 
     {
         double exchangeRate = exchangeRateService.fetchExchangeRate(bill.getOriginalCurrency(), bill.getTargetCurrency(), thirdPartyAPIKey);
-        PayableAmount payableAmount = exchangeRateService.calculatePayableAmount(bill, Math.round(exchangeRate));
+        PayableAmount payableAmount = exchangeRateService.calculatePayableAmount(bill, exchangeRate);
         return new ResponseEntity<>(payableAmount,HttpStatus.OK);
     }
    
