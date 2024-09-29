@@ -1,6 +1,7 @@
 package com.exchange.demo.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 //BillRequest is class which maps json values to java fields
 public class BillRequest {
@@ -49,5 +50,13 @@ public class BillRequest {
 	public void setCustomerTenure(int customerTenure) {
 		this.customerTenure = customerTenure;
 	}
+	
+//	public void removeGroceryItems() {
+//		if (this.items != null) {
+//			this.items = this.items.stream()
+//				.filter(item -> !"groceries".equalsIgnoreCase(item.getCategory()))
+//				.collect(Collectors.toList());
+//		}
+//	}
 
 }

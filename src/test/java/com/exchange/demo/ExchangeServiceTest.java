@@ -64,7 +64,7 @@ public class ExchangeServiceTest {
 
 		PayableAmount payableAmount = exchangeService.calculatePayableAmount(bill, 278.0861);
 
-		assertEquals(52836.359, payableAmount);
+		assertEquals(52836.359, payableAmount.getPaymentAmount());
 
 	}
 
@@ -89,7 +89,66 @@ public class ExchangeServiceTest {
 
 		PayableAmount payableAmount = exchangeService.calculatePayableAmount(bill, 278.0861);
 
-		assertEquals(52836.359, payableAmount);
+		assertEquals(36151.193, payableAmount.getPaymentAmount());
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	@Test
+	public void testCalculateTotalAmountForEmployeeWithNonGroceriesWithLongerTenure() {
+		BillRequest bill = new BillRequest();
+		bill.setUserType("employee");
+		bill.setCustomerTenure(4);
+
+		Item item1 = new Item();
+		item1.setCategory("groceries");
+		item1.setPrice(0);
+
+		Item item2 = new Item();
+		item2.setCategory("other");
+		item2.setPrice(200);
+
+		bill.setItems(Arrays.asList(item1, item2));
+
+		bill.setOriginalCurrency("USD");
+		bill.setTargetCurrency("PKR");
+
+		PayableAmount payableAmount = exchangeService.calculatePayableAmount(bill, 278.0861);
+
+		assertEquals(36151.193, payableAmount.getPaymentAmount());
+
+	}
+	
+	
+	
+	
+	@Test
+	public void testCalculateTotalAmountForEmployeeWithGroceriesAndNonGroceries() {
+		BillRequest bill = new BillRequest();
+		bill.setUserType("employee");
+		bill.setCustomerTenure(1);
+
+		Item item1 = new Item();
+		item1.setCategory("groceries");
+		item1.setPrice(100);
+
+		Item item2 = new Item();
+		item2.setCategory("other");
+		item2.setPrice(100);
+
+		bill.setItems(Arrays.asList(item1, item2));
+
+		bill.setOriginalCurrency("USD");
+		bill.setTargetCurrency("PKR");
+
+		PayableAmount payableAmount = exchangeService.calculatePayableAmount(bill, 278.0861);
+
+		assertEquals(44493.776, payableAmount.getPaymentAmount());
 
 	}
 

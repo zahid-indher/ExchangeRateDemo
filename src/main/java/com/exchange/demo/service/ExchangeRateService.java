@@ -28,18 +28,18 @@ public class ExchangeRateService {
 	public PayableAmount calculatePayableAmount(BillRequest billRequest, double exchangeRate) {
 		DiscountCalculator discountCalculator = new DiscountCalculator();
 
-		double totalAmount = billRequest.getItems().stream().mapToDouble(item -> item.getPrice()).sum();
-		double totalPayable = discountCalculator.calculateTotalPayable(billRequest);
-		double discountedAmount = totalPayable * exchangeRate;
+		double totalAmount  =  billRequest.getItems().stream().mapToDouble(item -> item.getPrice()).sum();
+		double discount     = discountCalculator.calculateDiscount(billRequest);
+		double totalPayable = (totalAmount - discount )  * exchangeRate;
 
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("~~ Total Amount   ::: " + totalAmount);
-		System.out.println("~~ Total Payable  ::: " + totalPayable);
-		System.out.println("~~ After Discount ::: " + discountedAmount);
+		System.out.println("~~ Discount       ::: " + discount);
+		System.out.println("~~ After Discount ::: " + totalPayable);
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
 		PayableAmount payableAmount = new PayableAmount();
-		payableAmount.setPaymentAmount(discountedAmount);
+		payableAmount.setPaymentAmount(totalPayable);
 
 		return payableAmount;
 	}
