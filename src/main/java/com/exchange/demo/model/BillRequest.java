@@ -50,13 +50,5 @@ public class BillRequest {
 	public void setCustomerTenure(int customerTenure) {
 		this.customerTenure = customerTenure;
 	}
-	
-//	public void removeGroceryItems() {
-//		if (this.items != null) {
-//			this.items = this.items.stream()
-//				.filter(item -> !"groceries".equalsIgnoreCase(item.getCategory()))
-//				.collect(Collectors.toList());
-//		}
-//	}
 
 }

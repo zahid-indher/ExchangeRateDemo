@@ -9,10 +9,10 @@ import com.exchange.demo.model.Item;
 //This class provide the methods to calculate the discount based on specified rules.
 public class DiscountCalculator {
 
-	public double calculateDiscount(BillRequest billRequest) {
+	public double getApplicableDiscount(BillRequest billRequest) {
 
-		double groceryTotal = 0.0;
-		double nonGroceryTotal = 0.0;
+//		double groceryTotal = 0.0;
+		double noGroceryTotal = 0.0;
 		double percentageDiscount = 0.0;
 
 		int customerSince = billRequest.getCustomerTenure();
@@ -23,25 +23,23 @@ public class DiscountCalculator {
 		// Calculate fixed discount for every $100 on the bill
 		double fixedDiscount = Math.floor(totalAmount / 100) * 5;
 
+		// To obtain the total for non-grocery items, as discounts only apply to them according to the specified rules.
 		for (Item item : billRequest.getItems()) {
-			if (Constants.GROCERRIES.equalsIgnoreCase(item.getCategory())) {
-				groceryTotal += item.getPrice();
-			} else {
-				nonGroceryTotal += item.getPrice();
+			if (!Constants.GROCERRIES.equalsIgnoreCase(item.getCategory())) {
+				noGroceryTotal += item.getPrice();
+//			} else {
+//				nonGroceryTotal += item.getPrice();
 			}
 		}
 
 		if (hasNonGroceries(billRequest.getItems())) {
 			percentageDiscount = getPercentageDiscount(userType, customerSince);
-			nonGroceryTotal = nonGroceryTotal * percentageDiscount;
+			noGroceryTotal = noGroceryTotal * percentageDiscount;
 		}
 
-		System.out.println("groceryTotal : " + groceryTotal);
-		System.out.println("nonGroceryTotal : " + nonGroceryTotal);
+		double discount = noGroceryTotal + fixedDiscount;
 
-		double discount = nonGroceryTotal + fixedDiscount;
-
-		System.out.print(discount);
+//		System.out.print(discount);
 
 		return discount;
 	}
