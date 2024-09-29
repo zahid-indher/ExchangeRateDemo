@@ -19,7 +19,7 @@ public class ExchangeRateService {
 	public double fetchExchangeRate(String baseCurrency, String targetCurrency, String apiKey) {
 		String url = Constants.API_URL + baseCurrency + "?apikey=" + apiKey;
 
-		System.out.println("URL ::: " + url);
+		System.out.println("Third Paryt URL ::: " + url);
 		Map<String, Object> response = restExecutor.getForObject(url, Map.class);
 		Map<String, Double> rates = (Map<String, Double>) response.get("rates");
 		return rates.get(targetCurrency);
@@ -28,14 +28,14 @@ public class ExchangeRateService {
 	public PayableAmount calculatePayableAmount(BillRequest billRequest, double exchangeRate) {
 		DiscountCalculator discountCalculator = new DiscountCalculator();
 
-		double totalAmount = billRequest.getItems().stream().mapToDouble(item -> item.getPrice()).sum();
+		double totalBillAmount = billRequest.getItems().stream().mapToDouble(item -> item.getPrice()).sum();
 		double discount = discountCalculator.getApplicableDiscount(billRequest);
-		double totalPayable = (totalAmount - discount) * exchangeRate;
-
-		System.out.println("~~ Total Amount   ::: " + totalAmount);
-		System.out.println("~~ Discount       ::: " + discount);
-		System.out.println("~~ After Discount ::: " + totalPayable);
+		double totalPayable = (totalBillAmount - discount) * exchangeRate;
 		
+		System.out.println("~~ Total Bill Amount   ::: " + totalBillAmount);
+		System.out.println("~~ Discount            ::: " + discount);
+		System.out.println("~~ After Discount      ::: " + totalPayable);
+
 		PayableAmount payableAmount = new PayableAmount();
 		payableAmount.setPaymentAmount(totalPayable);
 

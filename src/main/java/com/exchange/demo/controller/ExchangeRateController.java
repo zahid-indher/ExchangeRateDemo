@@ -3,7 +3,6 @@ package com.exchange.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.exchange.demo.model.BillRequest;
@@ -26,7 +25,7 @@ public class ExchangeRateController
     public ResponseEntity<PayableAmount> computePayableTotal(@RequestBody BillRequest bill) 
     {
         double exchangeRate = exchangeRateService.fetchExchangeRate(bill.getOriginalCurrency(), bill.getTargetCurrency(), thirdPartyAPIKey);
-        PayableAmount payableAmount = exchangeRateService.calculatePayableAmount(bill, exchangeRate);
+        PayableAmount payableAmount = exchangeRateService.calculatePayableAmount(bill, Math.round(exchangeRate));
         return new ResponseEntity<>(payableAmount,HttpStatus.OK);
     }
    
